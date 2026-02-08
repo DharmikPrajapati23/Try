@@ -130,4 +130,4 @@ def delete_attendance(attendance_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=int(os.getenv("PORT", 5000)), debug=False)
