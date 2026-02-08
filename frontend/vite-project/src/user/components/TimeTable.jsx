@@ -2,7 +2,9 @@ import React, { useState, useEffect, useRef } from 'react';
 import PageLayout from './PageLayout';
 import { FaClock, FaCalendarAlt } from 'react-icons/fa';
 
-const API_BASE_URL = 'http://localhost:5000/api/attendance';
+const BACKEND_API_URL = import.meta.env.VITE_BACKEND_API_URL;
+  
+const API_BASE_URL = `${BACKEND_API_URL}/api/attendance`;
 
 const TimeTable = () => {
   const [selectedDate, setSelectedDate] = useState('');
