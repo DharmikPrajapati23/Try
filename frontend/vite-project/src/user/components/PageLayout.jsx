@@ -36,7 +36,7 @@ const PageLayout = ({ title, children }) => {
     { icon: <FaComment />, label: 'Student Feedback', link: '/studentfeedback' },
     { icon: <FaInfoCircle />, label: 'About', link: '/about' },
     { icon: <FaInfoCircle />, label: 'Page Layout', link: '/pagelayout' },
-    { icon: <FaSignOutAlt />, label: 'LogOut', link: '/logout' }
+    { icon: <FaSignOutAlt />, label: 'LogOut', link: '/admin/attendance' }
   ];
 
   const toggleDrawer = () => {
