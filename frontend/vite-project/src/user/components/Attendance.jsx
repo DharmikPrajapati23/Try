@@ -137,7 +137,7 @@ const Attendance = () => {
                   
                   {/* Time and Faculty */}
                   <p className="text-gray-700 text-base">
-                    {record.time_from} {record.faculty_name}
+                    {record.time_to} {record.faculty_name}
                   </p>
                 </div>
 
