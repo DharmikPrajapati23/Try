@@ -31,13 +31,13 @@ const Attendance = () => {
       setLoading(true);
       const res = await fetch(API_BASE_URL);
       const data = await res.json();
-      
+
       // Filter by selected date
       const filtered = data.filter(record => record.date === selectedDate);
-      
+
       // Sort by time
       filtered.sort((a, b) => a.time_from.localeCompare(b.time_from));
-      
+
       setRecords(filtered);
     } catch (err) {
       console.error('Error fetching attendance:', err);
@@ -50,8 +50,8 @@ const Attendance = () => {
     if (!dateStr) return '';
     const date = new Date(dateStr + 'T00:00:00');
     const day = String(date.getDate()).padStart(2, '0');
-    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 
-                        'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun',
+      'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
     const month = monthNames[date.getMonth()];
     const year = date.getFullYear();
     return `${day}-${month}-${year}`;
@@ -68,8 +68,8 @@ const Attendance = () => {
       return { letter: 'P', bgColor: 'bg-green-600' };
     } else if (attendance === 'Absent') {
       return { letter: 'A', bgColor: 'bg-red-600' };
-    } else if (attendance === 'Late') {
-      return { letter: 'L', bgColor: 'bg-yellow-600' };
+    } else if (attendance === 'N') {
+      return { letter: 'N', bgColor: 'bg-gray-600' };
     }
     return { letter: 'A', bgColor: 'bg-red-600' };
   };
@@ -79,18 +79,18 @@ const Attendance = () => {
       <div className="bg-white min-h-screen pb-20">
         {/* Date Picker */}
         <div className="px-4 pt-4 pb-4">
-          <div 
+          <div
             onClick={handleDateClick}
             className="relative bg-white rounded-lg border-2 border-gray-300 cursor-pointer hover:border-gray-400 transition-colors"
           >
             {/* Calendar Icon */}
             <FaCalendarAlt className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-500 w-5 h-5 pointer-events-none" />
-            
+
             {/* Date Display */}
             <div className="w-full px-12 py-3 text-gray-700 text-base">
               {formatDateDisplay(selectedDate)}
             </div>
-            
+
             {/* Hidden Date Input */}
             <input
               ref={dateInputRef}
@@ -129,12 +129,12 @@ const Attendance = () => {
                   <p className="text-gray-700 text-base mb-1">
                     {record.time_from}
                   </p>
-                  
+
                   {/* Subject Name */}
                   <h3 className="text-gray-900 text-lg font-bold mb-1">
                     {record.subject_name}
                   </h3>
-                  
+
                   {/* Time and Faculty */}
                   <p className="text-gray-700 text-base">
                     {record.time_to} {record.faculty_name}
@@ -159,9 +159,8 @@ const Attendance = () => {
       <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex items-center justify-around py-2 z-50">
         <button
           onClick={() => setActiveTab('daily')}
-          className={`flex flex-col items-center justify-center py-2 ${
-            activeTab === 'daily' ? 'text-[#4AAED9]' : 'text-gray-500'
-          }`}
+          className={`flex flex-col items-center justify-center py-2 ${activeTab === 'daily' ? 'text-[#4AAED9]' : 'text-gray-500'
+            }`}
         >
           <FaCalendarCheck className="w-7 h-7 mb-1" />
           <span className="text-sm">Daily</span>
@@ -169,9 +168,8 @@ const Attendance = () => {
 
         <button
           onClick={() => setActiveTab('summary')}
-          className={`flex flex-col items-center justify-center py-2 ${
-            activeTab === 'summary' ? 'text-[#4AAED9]' : 'text-gray-500'
-          }`}
+          className={`flex flex-col items-center justify-center py-2 ${activeTab === 'summary' ? 'text-[#4AAED9]' : 'text-gray-500'
+            }`}
         >
           <FaList className="w-7 h-7 mb-1" />
           <span className="text-sm">Summary</span>
@@ -179,9 +177,8 @@ const Attendance = () => {
 
         <button
           onClick={() => setActiveTab('yearly')}
-          className={`flex flex-col items-center justify-center py-2 ${
-            activeTab === 'yearly' ? 'text-[#4AAED9]' : 'text-gray-500'
-          }`}
+          className={`flex flex-col items-center justify-center py-2 ${activeTab === 'yearly' ? 'text-[#4AAED9]' : 'text-gray-500'
+            }`}
         >
           <FaChartBar className="w-7 h-7 mb-1" />
           <span className="text-sm">Yearly Analytics</span>
